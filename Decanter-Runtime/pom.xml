@@ -38,17 +38,16 @@
 				<artifactId>karaf-maven-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>mvn:org.apache.karaf.features/framework/${dependency.karaf.version}/xml/features</descriptor>
-						<descriptor>mvn:org.apache.karaf.features/standard/${dependency.karaf.version}/xml/features</descriptor>
-						<descriptor>mvn:org.apache.karaf.features/enterprise/${dependency.karaf.version}/xml/features</descriptor>
-						<descriptor>mvn:org.apache.karaf.decanter/apache-karaf-decanter/${dependency.karaf.version}/xml/features</descriptor>
+						<descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>
+						<descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor>
+						<descriptor>mvn:org.apache.karaf.features/enterprise/${karaf.version}/xml/features</descriptor>
+						<descriptor>mvn:org.apache.karaf.decanter/apache-karaf-decanter/${decanter.version}/xml/features</descriptor>
 					</descriptors>
 					<installedFeatures>
                         <feature>wrapper</feature>
-						<feature>war</feature>
-						<feature>decanter-appender-elasticsearch-rest</feature>
 						<feature>decanter-collector-jmx</feature>
 						<feature>decanter-collector-process</feature>
+						<feature>decanter-appender-elasticsearch-rest</feature>
                     </installedFeatures>
 					<bootFeatures>
 						<feature>minimal</feature>
