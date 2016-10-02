@@ -31,14 +31,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.karaf.features</groupId>
-			<artifactId>enterprise</artifactId>
-            <version>${karaf.version}</version>
-			<classifier>features</classifier>
-			<scope>runtime</scope>
-			<type>xml</type>
-		</dependency>	
-		<dependency>
 			<groupId>org.apache.karaf.decanter</groupId>
 			<artifactId>apache-karaf-decanter</artifactId>
 			<version>${decanter.version}</version>
