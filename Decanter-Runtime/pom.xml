@@ -44,12 +44,15 @@
 					</descriptors>
 					<installedFeatures>
                         <feature>wrapper</feature>
+                    </installedFeatures>
+                    <startupFeatures>
+                        <feature>eventadmin</feature>
+                    </startupFeatures>
+					<bootFeatures>
+						<feature>minimal</feature>
 						<feature>decanter-collector-jmx</feature>
 						<feature>decanter-collector-process</feature>
 						<feature>decanter-appender-elasticsearch-rest</feature>
-                    </installedFeatures>
-					<bootFeatures>
-						<feature>minimal</feature>
 					</bootFeatures>
 				</configuration>
 			</plugin>
