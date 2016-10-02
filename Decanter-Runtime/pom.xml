@@ -45,13 +45,13 @@
 					</descriptors>
 					<installedFeatures>
                         <feature>wrapper</feature>
-                    </installedFeatures>
-					<bootFeatures>
-						<feature>minimal</feature>
 						<feature>war</feature>
 						<feature>decanter-appender-elasticsearch-rest</feature>
 						<feature>decanter-collector-jmx</feature>
 						<feature>decanter-collector-process</feature>
+                    </installedFeatures>
+					<bootFeatures>
+						<feature>minimal</feature>
 					</bootFeatures>
 				</configuration>
 			</plugin>
