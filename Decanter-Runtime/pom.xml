@@ -9,6 +9,16 @@
 	<artifactId>Decanter-Runtime</artifactId>
 	<packaging>karaf-assembly</packaging>
 	
+	<dependencies>
+		<dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Decanter-Feature</artifactId>
+            <version>${project.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+	</dependencies>
+	
 	<build>
 		<resources>
 			<resource>
@@ -50,9 +60,9 @@
                     </startupFeatures>
 					<bootFeatures>
 						<feature>minimal</feature>
-						<feature>decanter-collector-jmx</feature>
-						<feature>decanter-collector-process</feature>
-						<feature>decanter-appender-elasticsearch-rest</feature>
+						<feature>decanter-collector-jmx-core</feature>
+						<feature>decanter-collector-process-core</feature>
+						<feature>decanter-appender-elasticsearch-rest-core</feature>
 					</bootFeatures>
 				</configuration>
 			</plugin>

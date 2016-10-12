@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features name="${project.artifactId}-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" >
+
+    <repository>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</repository>
+	<repository>mvn:org.apache.karaf.decanter/apache-karaf-decanter/${decanter.version}/xml/features</repository>
+    
+	<feature name="${project.artifactId}" version="${project.version}">
+		<feature dependency="true">scr</feature>
+		<feature>decanter-appender-elasticsearch-rest-core</feature>
+		<feature>decanter-collector-jmx-core</feature>
+		<feature>decanter-collector-process-core</feature>
+		<bundle>mvn:${project.groupId}/Decanter-Module/${project.version}</bundle>
+		<configfile finalname="/etc/org.apache.karaf.decanter.appender.elasticsearch.rest.cfg">mvn:de.nierbeck.karaf.decanter/org.apache.karaf.decanter.appender.elasticsearch.rest/${project.version}/cfg</configfile>
+	</feature>
+</features>
