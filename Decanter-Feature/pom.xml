@@ -8,6 +8,7 @@
 	</parent>
 	<artifactId>Decanter-Feature</artifactId>
 	<packaging>feature</packaging>
+	<description>Decanter Runtime to Monitor Cassandra and Kafka via JMX</description>
 
 	<dependencies>
 		<dependency>
@@ -49,31 +50,30 @@
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>verify</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>
-								<descriptor>file:${project.build.directory}/classes/feature.xml</descriptor>
-							</descriptors>
-							<distribution>org.apache.karaf.features:framework</distribution>
-							<javase>1.8</javase>
-							<framework>
-                                <feature>framework</feature>
-<!--                                 <feature>minimal</feature> -->
-                            </framework>
-							<features>
-								<feature>Decanter*</feature>
-							</features>
-							<verifyTransitive>false</verifyTransitive>
-						</configuration>
-					</execution>
-				</executions>
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>verify</id> -->
+<!-- 						<phase>process-resources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>verify</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<descriptors> -->
+<!-- 								<descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor> -->
+<!-- 								<descriptor>file:${project.build.directory}/classes/feature.xml</descriptor> -->
+<!-- 							</descriptors> -->
+<!-- 							<distribution>org.apache.karaf.features:framework</distribution> -->
+<!-- 							<javase>1.8</javase> -->
+<!-- 							<features> -->
+<!-- 								<feature>Decanter*</feature> -->
+<!-- 							</features> -->
+<!-- 							<framework> -->
+<!-- 								<feature>framework</feature> -->
+<!-- 							</framework> -->
+<!-- 							<verifyTransitive>false</verifyTransitive> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
