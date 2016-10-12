@@ -11,6 +11,28 @@
 	
 	<dependencies>
 		<dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.version}</version>
+            <type>kar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>standard</artifactId>
+            <version>${karaf.version}</version>
+            <classifier>features</classifier>
+            <scope>runtime</scope>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.decanter</groupId>
+            <artifactId>apache-karaf-decanter</artifactId>
+            <version>${decanter.version}</version>
+            <classifier>features</classifier>
+            <scope>runtime</scope>
+            <type>xml</type>
+        </dependency>
+		<dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Decanter-Feature</artifactId>
             <version>${project.version}</version>
@@ -60,9 +82,7 @@
                     </startupFeatures>
 					<bootFeatures>
 						<feature>minimal</feature>
-						<feature>decanter-collector-jmx-core</feature>
-						<feature>decanter-collector-process-core</feature>
-						<feature>decanter-appender-elasticsearch-rest-core</feature>
+						<feature>Decanter-Feature</feature>
 					</bootFeatures>
 				</configuration>
 			</plugin>

@@ -65,7 +65,7 @@
 							<javase>1.8</javase>
 							<framework>
                                 <feature>framework</feature>
-                                <feature>minimal</feature>
+<!--                                 <feature>minimal</feature> -->
                             </framework>
 							<features>
 								<feature>Decanter*</feature>
