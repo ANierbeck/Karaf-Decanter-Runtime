@@ -100,6 +100,8 @@
                         <feature>system</feature>
 <!--                         <feature>obr</feature> -->
                         <feature>scr</feature>
+                        <feature>eventadmin</feature>
+						<feature>Decanter-Feature</feature>
 					</bootFeatures>
 					<javase>1.8</javase>
 				</configuration>

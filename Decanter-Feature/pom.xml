@@ -6,8 +6,8 @@
 		<artifactId>Karaf-Decanter-Runtime</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>Decanter-Runtime-Feature</artifactId>
-	<packaging>feature</packaging>
+	<artifactId>Decanter-Feature</artifactId>
+	<packaging>pom</packaging>
 	<description>Decanter Runtime to Monitor Cassandra and Kafka via JMX</description>
 
 	<dependencies>
@@ -77,6 +77,28 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>target/classes/feature.xml</file>
+									<type>xml</type>
+									<classifier>features</classifier>
+								</artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>
