@@ -6,7 +6,7 @@
 		<artifactId>Karaf-Decanter-Runtime</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>Decanter-Feature</artifactId>
+	<artifactId>Decanter-Runtime-Feature</artifactId>
 	<packaging>feature</packaging>
 	<description>Decanter Runtime to Monitor Cassandra and Kafka via JMX</description>
 
@@ -50,30 +50,32 @@
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-maven-plugin</artifactId>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>verify</id> -->
-<!-- 						<phase>process-resources</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>verify</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<descriptors> -->
-<!-- 								<descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor> -->
-<!-- 								<descriptor>file:${project.build.directory}/classes/feature.xml</descriptor> -->
-<!-- 							</descriptors> -->
-<!-- 							<distribution>org.apache.karaf.features:framework</distribution> -->
-<!-- 							<javase>1.8</javase> -->
-<!-- 							<features> -->
-<!-- 								<feature>Decanter*</feature> -->
-<!-- 							</features> -->
-<!-- 							<framework> -->
-<!-- 								<feature>framework</feature> -->
-<!-- 							</framework> -->
-<!-- 							<verifyTransitive>false</verifyTransitive> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<executions>
+					<execution>
+						<id>verify</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>
+								<descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor>
+								<descriptor>file:${project.build.directory}/classes/feature.xml</descriptor>
+							</descriptors>
+							<distribution>org.apache.karaf.features:framework</distribution>
+							<javase>1.8</javase>
+							<framework>
+								<feature>framework</feature>
+							</framework>
+							<features>
+								<feature>${project.artifactId}</feature>
+							</features>
+							<verifyTransitive>false</verifyTransitive>
+							<ignoreMissingConditions>true</ignoreMissingConditions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
