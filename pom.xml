@@ -14,7 +14,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>Decanter-Runtime</module>
-		<module>Decanter-Docker</module>
 		<module>Decanter-Module</module>
 		<module>Decanter-Feature</module>
 	</modules>
@@ -78,4 +77,13 @@
 		<developerConnection>scm:git:git@github.com:ANierbeck/Karaf-Decanter-Runtime.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<profiles>
+		<profile>
+			<id>docker</id>
+			<modules>
+				<module>Decanter-Docker</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>
