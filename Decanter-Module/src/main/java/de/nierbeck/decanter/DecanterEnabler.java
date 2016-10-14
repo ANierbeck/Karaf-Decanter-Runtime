@@ -23,25 +23,24 @@ import org.slf4j.LoggerFactory;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 
-@Component(immediate=true, service = {})
+@Component(immediate = true, service = {})
 public class DecanterEnabler {
 
     final static private Logger LOG = LoggerFactory.getLogger(DecanterEnabler.class);
-    
-    final private Socket sock = new Socket();
+
     final private int timeOut = (int) TimeUnit.SECONDS.toMillis(1);
 
     private ConfigurationAdmin configAdmin;
-    
+
     @Activate
     public void start(BundleContext bundleContext) {
         LOG.info("starting DecanterEnabler, will scan for Cassandra and local Kafka ...");
-        
+
         if (isKafkaRunningLocaly()) {
             LOG.info("Found local Kafka running");
             configureKafkaProcessCollector();
-        } 
-        
+        }
+
         if (isCassandraRunningLocaly()) {
             LOG.info("Found local Cassandra running");
             configureCassandraCollector();
@@ -50,7 +49,8 @@ public class DecanterEnabler {
 
     private void configureCassandraCollector() {
         try {
-            Configuration configuration = configAdmin.createFactoryConfiguration("org.apache.karaf.decanter.collector.jmx");
+            Configuration configuration = configAdmin
+                    .createFactoryConfiguration("org.apache.karaf.decanter.collector.jmx");
 
             Dictionary<String, Object> dictionary = configuration.getProperties();
             if (dictionary == null) {
@@ -60,7 +60,8 @@ public class DecanterEnabler {
             dictionary.put("type", "jmx-cassandra");
             dictionary.put("url", "service:jmx:rmi:///jndi/rmi://localhost:7199/jmxrmi");
             dictionary.put("object.name", "org.apache.cassandra.metrics:type=ClientRequest,scope=*,name=*");
-            dictionary.put("server_ip", InetAddress.getLocalHost().toString());
+            dictionary.put("server_ip", InetAddress.getLocalHost().getHostAddress());
+            dictionary.put("server_name", InetAddress.getLocalHost().getHostName());
 
             LOG.info("updating jmx-cassandra configuration");
 
@@ -71,10 +72,11 @@ public class DecanterEnabler {
             LOG.error("Can't configure configuration for jmx-cassandra");
         }
     }
-    
+
     private void configureKafkaProcessCollector() {
         try {
-            Configuration configuration = configAdmin.createFactoryConfiguration("org.apache.karaf.decanter.collector.process");
+            Configuration configuration = configAdmin
+                    .createFactoryConfiguration("org.apache.karaf.decanter.collector.process");
 
             Dictionary<String, Object> dictionary = configuration.getProperties();
             if (dictionary == null) {
@@ -100,7 +102,7 @@ public class DecanterEnabler {
     public void stop(BundleContext bundleContext) {
 
     }
-    
+
     @Reference(unbind = "unsetConfigAdminService")
     protected void setConfigAdminService(ConfigurationAdmin ca) {
         this.configAdmin = ca;
@@ -111,18 +113,26 @@ public class DecanterEnabler {
     }
 
     private boolean isCassandraRunningLocaly() {
+        Socket sock = new Socket();
         try {
             sock.connect(new InetSocketAddress("localhost", 7199), timeOut);
             return true;
         } catch (IOException e) {
             return false;
+        } finally {
+            try {
+                if (!sock.isClosed())
+                    sock.close();
+            } catch (IOException e) {
+                LOG.error("can't close socket, must already been closed");
+            }
         }
     }
-    
-    
+
     private boolean isKafkaRunningLocaly() {
-        List<VirtualMachineDescriptor> collect = VirtualMachine.list().stream().filter(descriptor -> descriptor.displayName().contains("Kafka")).collect(Collectors.toList());
+        List<VirtualMachineDescriptor> collect = VirtualMachine.list().stream()
+                .filter(descriptor -> descriptor.displayName().contains("Kafka")).collect(Collectors.toList());
         return !collect.isEmpty();
     }
-    
+
 }

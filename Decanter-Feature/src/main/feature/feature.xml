@@ -6,9 +6,9 @@
     
 	<feature name="${project.artifactId}" version="${project.version}">
 		<feature dependency="true">scr</feature>
-		<feature dependency="true">decanter-appender-elasticsearch-rest-core</feature>
-		<feature dependency="true">decanter-collector-jmx-core</feature>
-		<feature dependency="true">decanter-collector-process-core</feature>
+		<feature>decanter-appender-elasticsearch-rest-core</feature>
+		<feature>decanter-collector-jmx-core</feature>
+		<feature>decanter-collector-process-core</feature>
 		<bundle>mvn:${project.groupId}/Decanter-Module/${project.version}</bundle>
 		<configfile finalname="/etc/org.apache.karaf.decanter.appender.elasticsearch.rest.cfg">mvn:de.nierbeck.karaf.decanter/Decanter-Module/${project.version}/cfg</configfile>
 	</feature>
